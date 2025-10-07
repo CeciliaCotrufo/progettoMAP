@@ -157,19 +157,12 @@ public class Data {
 
     public String toString(){
 
-       /* String model[][];
-
-        model = new String[getNumberOfExamples()][getNumberOfAttributes()];*/
-
         /*String [] attribute;
         attribute = new String[getNumberOfAttributes()];*/
-
         /*for(int i=0;i<getNumberOfAttributes();i++){
             System.out.print(getAttribute(i)+",");
-
         }
         System.out.println();*/
-
 
         for(int i=0;i<getNumberOfExamples();i++){
             System.out.print(i+1+":");
@@ -191,10 +184,6 @@ public class Data {
         Data trainingSet = new Data();
         System.out.println(trainingSet);
 
-        /*for (int i=0; i<trainingSet.numberOfExamples;i++){
-            System.out.println((i+1) + ":" + trainingSet);
-
-        }*/
 
 
     }
