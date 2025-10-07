@@ -157,9 +157,9 @@ public class Data {
 
     public String toString(){
 
-        String model[][];
+       /* String model[][];
 
-        model = new String[getNumberOfExamples()][getNumberOfAttributes()];
+        model = new String[getNumberOfExamples()][getNumberOfAttributes()];*/
 
         /*String [] attribute;
         attribute = new String[getNumberOfAttributes()];*/
@@ -174,21 +174,27 @@ public class Data {
         for(int i=0;i<getNumberOfExamples();i++){
             System.out.print(i+1+":");
             for(int j=0;j<getNumberOfAttributes();j++){
-                model[i][j]= (String) getAttributeValue(i,j);
-                System.out.print(model[i][j] + ",");
+                data[i][j]= getAttributeValue(i,j).toString();
+                System.out.print(data[i][j] + ",");
             }
             System.out.println();
         }
 
-        return Arrays.deepToString(model);
+        return "";
 
     }
 
 
 
     public static void main(String args[]){
-        Data trainingSet=new Data();
+
+        Data trainingSet = new Data();
         System.out.println(trainingSet);
+
+        /*for (int i=0; i<trainingSet.numberOfExamples;i++){
+            System.out.println((i+1) + ":" + trainingSet);
+
+        }*/
 
 
     }
