@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Data {
+public class Data{
 
     private Object data [][];
     private int numberOfExamples;
@@ -14,7 +14,6 @@ public class Data {
 
         data = new Object [14][5];
 
-        // TO DO : memorizzare le transazioni secondo lo schema della tabella nelle specifiche
         data[0][0] = "Sunny";
         data[0][1] = "Hot";
         data[0][2] = "High";
@@ -152,6 +151,15 @@ public class Data {
 
     Attribute[] getAttributeSchema(){
         return attributeSet;
+    }
+
+    Tuple getItemSet(int index){
+        Tuple tuple = new Tuple (explanatorySet.length);
+        for(int i =0; i < explanatorySet.length;i++)
+            tuple.add(new DiscreteItem(explanatorySet[i],
+                    (String) data[index][i]),i);
+
+        return tuple;
     }
 
 
