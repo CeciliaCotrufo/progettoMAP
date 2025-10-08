@@ -1,18 +1,22 @@
-
 class Cluster {
 	private Tuple centroid;
 
 	private ArraySet clusteredData; 
 	
 	Cluster(){
-		
+		this.centroid = centroid;
+        this.clusteredData = clusteredData;
 	}
+
 
 	Cluster(Tuple centroid){
 		this.centroid=centroid;
 		clusteredData=new ArraySet();
 		
 	}
+    Cluster get(int i){
+        return C[i];
+    }
 		
 	Tuple getCentroid(){
 		return centroid;
@@ -30,7 +34,7 @@ class Cluster {
 	}
 	
 
-	//remove the tuplethat has changed the cluster
+	//remove the tuple that has changed the cluster
 	void removeTuple(int id){
 		clusteredData.delete(id);
 		
