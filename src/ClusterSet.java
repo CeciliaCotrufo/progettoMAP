@@ -16,7 +16,7 @@ public class ClusterSet {
     Cluster get(int i){
         return C[i];
     }
-
+    //sistemare
     public String toString(){
         String str = "";
         for(int i=0; i<C.length; i++)
