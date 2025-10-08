@@ -14,9 +14,7 @@ class Cluster {
 		clusteredData=new ArraySet();
 		
 	}
-    Cluster get(int i){
-        return C[i];
-    }
+
 		
 	Tuple getCentroid(){
 		return centroid;
