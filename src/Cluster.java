@@ -1,4 +1,5 @@
 class Cluster {
+
 	private Tuple centroid;
 
 	private ArraySet clusteredData; 
@@ -46,6 +47,7 @@ class Cluster {
 	int[] iterator(){
 		return clusteredData.toArray();
 	}
+
 	
 	public String toString(){
 		String str="Centroid=(";
@@ -55,7 +57,6 @@ class Cluster {
 		return str;
 		
 	}
-	
 	
 
 

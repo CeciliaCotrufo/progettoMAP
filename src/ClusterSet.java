@@ -16,11 +16,11 @@ public class ClusterSet {
     Cluster get(int i){
         return C[i];
     }
-    //sistemare
+    //ricontrollare
     public String toString(){
         String str = "";
         for(int i=0; i<C.length; i++)
-             str+= C[i].get(i);
+             str+= get(i);
         return str;
     }
 
