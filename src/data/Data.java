@@ -1,6 +1,9 @@
 package data;
 import java.util.Arrays;
 
+/**
+ * Classe concreta che modella l'insieme di transazioni
+ */
 public class Data{
 
     private Object data [][];
@@ -8,7 +11,9 @@ public class Data{
     private Attribute attributeSet[];
 
 
-
+    /**
+     * 
+     */
     public Data(){
 
         //data

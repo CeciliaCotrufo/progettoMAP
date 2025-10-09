@@ -12,9 +12,8 @@ public class MainTest {
 	public static void main(String[] args) {
 		
 		
-		Data data =new Data();
+		Data data = new Data();
 		System.out.println(data);
-        char answer='y';
         do{
             System.out.println("Insert radius (>0)= ");
             QTMiner qt=new QTMiner(Keyboard.readDouble());
@@ -22,8 +21,7 @@ public class MainTest {
             System.out.println("Number of clusters:"+numIter);
             System.out.println(qt.getC().toString(data));
             System.out.println("New execution?(y/n)");
-            answer=Keyboard.readChar();
-        }while(answer=='y');
+        }while(Keyboard.readChar()=='y');
 
 
     }
