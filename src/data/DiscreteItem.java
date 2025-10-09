@@ -1,3 +1,4 @@
+package data;
 public class DiscreteItem extends Item{
 
     DiscreteItem(DiscreteAttribute attribute, String value){
@@ -5,7 +6,8 @@ public class DiscreteItem extends Item{
 
     }
     double distance (Object a){
-        if (getValue().equals(a)){
+        Item item = (Item) a;
+        if (this.getValue().equals(item.getValue())){
             return 0;
         }else{
             return 1;
