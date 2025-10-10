@@ -6,7 +6,7 @@ class Cluster {
 
 	private Tuple centroid;
 
-	private Set clusteredData =  new HashSet();
+	private Set<Integer> clusteredData =  new HashSet();
 	
 	Cluster(){
 		this.centroid = centroid;
@@ -47,10 +47,14 @@ class Cluster {
 		return clusteredData.size();
 	}
 	
-	
+	/*
     Object[] iterator(){
 		return clusteredData.toArray();
-	}
+	}*/
+
+    public Iterator<Integer> iterator(){
+        return clusteredData.iterator();
+    }
 
 	
 	public String toString(){
@@ -70,12 +74,12 @@ class Cluster {
 		for(int i=0;i<centroid.getLenght();i++)
 			str+=centroid.get(i)+ " ";
 		str+=")\nExamples:\n";
-		Object[] array=clusteredData.toArray();
-		for(int i=0;i<array.length;i++){
+		Set<Integer> = new HashSet<>(clusteredData);
+		for(){
 			str+="[";
 			for(int j=0;j<data.getNumberOfAttributes();j++)
-				str+=data.getAttributeValue(array[i], j)+" ";
-			str+="] dist="+getCentroid().getDistance(data.getItemSet(array[i]))+"\n";
+				str+=data.getAttributeValue((int)array[i], j)+" ";
+			str+="] dist="+getCentroid().getDistance(data.getItemSet((int)array[i]))+"\n";
 			
 		}
 		str+="\nAvgDistance="+getCentroid().avgDistance(data, array);
