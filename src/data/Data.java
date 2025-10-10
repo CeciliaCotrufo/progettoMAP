@@ -1,6 +1,10 @@
 package data;
+import java.util.*;
+import java.util.TreeSet;
+import java.util.List;
 import java.io.IOException;
-import java.util.Arrays;
+/*import java.util.Arrays;
+import java.util.LinkedList;*/
 
 /**
  * Classe concreta che modella l'insieme di transazioni
@@ -9,7 +13,8 @@ public class Data{
 
     private Object data [][];
     private int numberOfExamples;
-    private Attribute attributeSet[];
+    //private Attribute attributeSet;
+    List<Attribute> attributeSet;
 
 
     /**
@@ -101,37 +106,37 @@ public class Data{
 
         //explanatory Set
 
-        attributeSet = new Attribute[5];
+        attributeSet = new LinkedList<>();
 
         // TO DO : avvalorare ciascune elemento di attributeSet con un oggetto della classe DiscreteAttribute che modella il corrispondente attributo (e.g. outlook, temperature,etc)
         // nel seguito si fornisce l'esempio per outlook
 
-        String outLookValues[]=new String[3];
-        outLookValues[0]="overcast";
-        outLookValues[1]="rain";
-        outLookValues[2]="sunny";
-        attributeSet[0] = new DiscreteAttribute("Outlook",0, outLookValues);
+        TreeSet<String> outLookValues = new TreeSet<>();
+        outLookValues.add("overcast");
+        outLookValues.add("rain");
+        outLookValues.add("sunny");
+        attributeSet.add(0, new DiscreteAttribute("Outlook", 0, outLookValues));
 
-        String temperatureValues[]=new String[3];
-        temperatureValues[0]="hot";
-        temperatureValues[1]="mild";
-        temperatureValues[2]="cool";
-        attributeSet[1]=new DiscreteAttribute("Temperature",1, temperatureValues);
+        TreeSet<String> temperatureValues = new TreeSet<>();
+        temperatureValues.add("hot");
+        temperatureValues.add("mild");
+        temperatureValues.add("cool");
+        attributeSet.add(1, new DiscreteAttribute("Temperature",1, temperatureValues));
 
-        String humidityValues[]=new String[2];
-        humidityValues[0]="high";
-        humidityValues[1]="normal";
-        attributeSet[2]=new DiscreteAttribute("Humidity",2, humidityValues);
+        TreeSet<String> humidityValues = new TreeSet<>();
+        humidityValues.add("high");
+        humidityValues.add("normal");
+        attributeSet.add(2, new DiscreteAttribute("Humidity",2, humidityValues));
 
-        String windValues[]=new String [2];
-        windValues[0]="weak";
-        windValues[1]="strong";
-        attributeSet[3]= new DiscreteAttribute("Wind",3, windValues);
+        TreeSet<String> windValues=new TreeSet<>();
+        windValues.add("weak");
+        windValues.add("strong");
+        attributeSet.add(3, new DiscreteAttribute("Wind",3, windValues));
 
-        String playTennisValues[]=new String [2];
-        playTennisValues[0]="no";
-        playTennisValues[1]="yes";
-        attributeSet[4]= new DiscreteAttribute("PlayTennis",4, playTennisValues);
+        TreeSet<String> playTennisValues = new TreeSet<>();
+        playTennisValues.add("no");
+        playTennisValues.add("yes");
+        attributeSet.add(4, new DiscreteAttribute("PlayTennis",4, playTennisValues));
         // similmente per gli altri attributi
 
 
@@ -142,7 +147,7 @@ public class Data{
     }
 
     public int getNumberOfAttributes(){
-        return attributeSet.length;
+        return attributeSet.size();
     }
 
 
@@ -152,19 +157,18 @@ public class Data{
 
     }
 
-    Attribute getAttribute(int index){
+    /*Attribute getAttribute(int index){
         return attributeSet[index];
     }
 
     Attribute[] getAttributeSchema(){
         return attributeSet;
-    }
+    }*/
 
     public Tuple getItemSet(int index){
-        Tuple tuple = new Tuple (attributeSet.length);
-        for(int i =0; i < attributeSet.length;i++)
-            tuple.add(i,new DiscreteItem((DiscreteAttribute) attributeSet[i],(String) data[index][i]));
-
+        Tuple tuple = new Tuple (attributeSet.size());
+        for(int i =0; i < attributeSet.size();i++)
+            tuple.add(i,new DiscreteItem( (DiscreteAttribute) attributeSet.get(i) ,(String) data[index][i]));
         return tuple;
     }
 
@@ -194,10 +198,12 @@ public class Data{
 
     public static void main(String args[]){
         Data trainingSet = null;
+
         try {
             trainingSet = new Data();
         }catch(EmptyDatasetException e) {
             System.out.println(e.getMessage());
+
         }
         System.out.println(trainingSet);
 

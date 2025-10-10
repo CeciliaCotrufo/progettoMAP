@@ -1,11 +1,19 @@
 package data;
 
+import java.util.*;
+//import java.util.TreeSet;
+
 /**
  * Classe che estende la classe Attribute e rappresenta un attributo discreto (categorico).
  */
-public class DiscreteAttribute extends Attribute {
+public class DiscreteAttribute extends Attribute implements Iterable<TreeSet>{
 
-    String [] values;
+
+    private TreeSet<String> values = new TreeSet();
+
+    public Iterator iterator(){
+        return values.iterator();
+    }
 
     /**
      * Costruttore che inizializza i valori di name, index e values.
@@ -13,19 +21,19 @@ public class DiscreteAttribute extends Attribute {
      * @param index
      * @param values
      */
-    public DiscreteAttribute(String name, int index, String[] values) {
+    public DiscreteAttribute(String name, int index, TreeSet<String> values) {
 
-        super(name, index);
-        this.values = values;
+        super(name,index);
+        this.values=values;
     }
 
     /**
-     * Metodo che restituisce la dimensione di value.
+     * Metodo che restituisce la dimensione di values.
      * @return
      */
 
     int getNumberOfDistinctValues() {
-        return values.length;
+        return values.size();
     }
 
     /**
@@ -33,8 +41,9 @@ public class DiscreteAttribute extends Attribute {
      * @param i
      * @return
      */
-    String getValue(int i){
+    /*String getValue(int i){
         return values[i];
-    }
+    }*/
+
 
 }

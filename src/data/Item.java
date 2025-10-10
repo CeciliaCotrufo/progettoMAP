@@ -1,8 +1,8 @@
 package data;
 abstract class Item  {
 
-    Attribute attribute;
-    Object value;
+    private Attribute attribute;
+    private Object value;
 
     Item(Attribute attribute, Object value) {
         this.attribute = attribute;

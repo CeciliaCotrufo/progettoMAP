@@ -1,11 +1,12 @@
 package mining;
 import data.*;
 import utility.*;
+import java.util.*;
 class Cluster {
 
 	private Tuple centroid;
 
-	private ArraySet clusteredData; 
+	private Set clusteredData =  new HashSet();
 	
 	Cluster(){
 		this.centroid = centroid;
@@ -15,7 +16,7 @@ class Cluster {
 
 	Cluster(Tuple centroid){
 		this.centroid=centroid;
-		clusteredData=new ArraySet();
+		clusteredData=new HashSet();
 		
 	}
 
@@ -31,23 +32,23 @@ class Cluster {
 	}
 	
 	//verifica se una transazione � clusterizzata nell'array corrente
-	boolean contain(int id){
-		return clusteredData.get(id);
+	/*boolean contain(int id){
+		return clusteredData.(id);
 	}
-	
+	*/
 
 	//remove the tuple that has changed the cluster
-	void removeTuple(int id){
+	/*void removeTuple(int id){
 		clusteredData.delete(id);
 		
-	}
+	}*/
 	
 	int  getSize(){
 		return clusteredData.size();
 	}
 	
 	
-	int[] iterator(){
+    Object[] iterator(){
 		return clusteredData.toArray();
 	}
 
@@ -69,7 +70,7 @@ class Cluster {
 		for(int i=0;i<centroid.getLenght();i++)
 			str+=centroid.get(i)+ " ";
 		str+=")\nExamples:\n";
-		int array[]=clusteredData.toArray();
+		Object[] array=clusteredData.toArray();
 		for(int i=0;i<array.length;i++){
 			str+="[";
 			for(int j=0;j<data.getNumberOfAttributes();j++)

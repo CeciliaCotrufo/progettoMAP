@@ -5,8 +5,8 @@ package data;
  */
 public class ContinousAttribute extends Attribute{
 
-    double max;
-    double min;
+    private double max;
+    private double min;
 
     /**
      * Invoca il costruttore della classe madre e inizializza i membri aggiunit per estensione.

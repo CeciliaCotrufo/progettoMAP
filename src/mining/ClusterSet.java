@@ -1,17 +1,19 @@
 package mining;
 import data.*;
+import java.util.*;
 public class ClusterSet {
-    private Cluster C [] = new Cluster[0];
+
+    private Set C = new TreeSet();
 
     ClusterSet() {
-        this.C = new Cluster[0];//ricordarsi di controllare la dimensione del cluster
+        this.C = new TreeSet();//ricordarsi di controllare la dimensione del cluster
     }
 
     void add (Cluster c){
-        Cluster tempC[] = new Cluster[C.length+1];
-        for(int i=0; i<C.length; i++)
-            tempC[i] = C[i];
-        tempC[C.length]=c;
+        Cluster tempC[] = new Cluster[C.size()+1];
+        for(int i=0; i<C.size(); i++)
+            tempC[i] =  C[i];
+        tempC[C.size()]=c;
         C=tempC;
     }
 
@@ -21,14 +23,14 @@ public class ClusterSet {
     //ricontrollare
     public String toString(){
         String str = "";
-        for(int i=0; i<C.length; i++)
+        for(int i=0; i<C.size(); i++)
              str+= get(i);
         return str;
     }
 
     public String toString(Data data){
         String str = "";
-        for(int i=0; i<C.length; i++){
+        for(int i=0; i<C.size(); i++){
             if(C[i]!=null){
                 str+=i+": "+C[i].toString(data)+"\n";
             }
