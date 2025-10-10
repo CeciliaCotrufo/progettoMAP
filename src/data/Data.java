@@ -1,4 +1,5 @@
 package data;
+import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -12,9 +13,9 @@ public class Data{
 
 
     /**
-     * 
+     *
      */
-    public Data(){
+    public Data() throws EmptyDatasetException{
 
         //data
 
@@ -192,8 +193,12 @@ public class Data{
 
 
     public static void main(String args[]){
-
-        Data trainingSet = new Data();
+        Data trainingSet = null;
+        try {
+            trainingSet = new Data();
+        }catch(EmptyDatasetException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println(trainingSet);
 
 

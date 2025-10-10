@@ -9,16 +9,27 @@ public class MainTest {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws EmptyDatasetException {
 		
-		
-		Data data = new Data();
+		//int numIter=0;
+        double radius = 0.0;
+        Data data = new Data();
+        QTMiner qt = null;
 		System.out.println(data);
         do{
-            System.out.println("Insert radius (>0)= ");
-            QTMiner qt=new QTMiner(Keyboard.readDouble());
-            int numIter=qt.compute(data);
-            System.out.println("Number of clusters:"+numIter);
+            do{
+                System.out.println("Insert radius (>0)= ");
+                radius =Keyboard.readDouble() ;
+                qt = new QTMiner(radius);
+            }while(radius<=0);
+            try{
+                int numIter=qt.compute(data);
+                System.out.println("Number of clusters:"+numIter);
+            }catch(ClusteringRadiusException e){
+                System.out.println(e.getMessage());
+            }
+
+
             System.out.println(qt.getC().toString(data));
             System.out.println("New execution?(y/n)");
         }while(Keyboard.readChar()=='y');

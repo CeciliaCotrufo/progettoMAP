@@ -15,7 +15,8 @@ public class QTMiner {
         return C;
     }
 
-    public int compute(Data data){
+    public int compute(Data data) throws ClusteringRadiusException{
+
         int numclusters=0;
         boolean isClustered[]=new boolean[data.getNumberOfExamples()];
         for(int i=0; i<isClustered.length; i++)
@@ -25,6 +26,9 @@ public class QTMiner {
         {
             //Ricerca cluster più popoloso
             Cluster c=buildCandidateCluster(data, isClustered);
+            if(c.getSize() == 14){
+                throw new ClusteringRadiusException("14 tuples in one cluster!");
+            }
             C.add(c);
             numclusters++;
             //Rimuovo le tuple clusterizzate da dataset
