@@ -95,7 +95,7 @@ class Cluster implements Iterable<Integer>, Comparable <Cluster> {
 			str+="] dist="+getCentroid().getDistance(data.getItemSet(hSets))+"\n";
 			
 		}
-		str+="\nAvgDistance="+getCentroid().avgDistance(data, hSet);
+		str+="\nAvgDistance="+getCentroid().avgDistance(data, hSet); //SISTEMARE
 		return str;
 		
 	}
