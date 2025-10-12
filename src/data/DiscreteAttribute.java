@@ -9,7 +9,7 @@ import java.util.*;
 public class DiscreteAttribute extends Attribute implements Iterable<TreeSet>{
 
 
-    private TreeSet<String> values = new TreeSet();
+    private TreeSet<String> values = new TreeSet<>();
 
     public Iterator iterator(){
         return values.iterator();

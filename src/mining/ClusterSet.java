@@ -1,33 +1,52 @@
 package mining;
 import data.*;
 import java.util.*;
-public class ClusterSet {
+import java.lang.Iterable;
+public class ClusterSet implements Iterable<Cluster>{
 
-    private Set C = new TreeSet();
+    private Set<Cluster> C;
 
     ClusterSet() {
-        this.C = new TreeSet();//ricordarsi di controllare la dimensione del cluster
+        C = new TreeSet<>(); //ricordarsi di controllare
+
     }
+
+    public Iterator<Cluster> iterator(){
+        return C.iterator();
+    }
+
 
     void add (Cluster c){
-        Cluster tempC[] = new Cluster[C.size()+1];
-        for(int i=0; i<C.size(); i++)
-            tempC[i] =  C[i];
-        tempC[C.size()]=c;
-        C=tempC;
+        C.add(c);
     }
 
-    Cluster get(int i){
+    /*Cluster get(int i){
         return C[i];
-    }
+    }*/
+
     //ricontrollare
     public String toString(){
         String str = "";
-        for(int i=0; i<C.size(); i++)
-             str+= get(i);
+        for(Cluster c : C) {
+            str += c; //si può usare anche c. onesto iterator() è ancora un mistero per me
+        }
         return str;
     }
 
+    public String toString(Data data){
+        String str = "";
+        int i = 0;
+        for(Cluster c : C) {
+            if(C.iterator()!=null){
+                str+= i + " : " + c.toString(data) +"\n";//abbiamo tolto la i...
+                i++;
+            }
+
+        }
+        return str;
+    }
+
+    /*
     public String toString(Data data){
         String str = "";
         for(int i=0; i<C.size(); i++){
@@ -36,7 +55,7 @@ public class ClusterSet {
             }
         }
         return str;
-    }
+    }*/
 
 
 

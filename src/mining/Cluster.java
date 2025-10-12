@@ -1,8 +1,9 @@
 package mining;
 import data.*;
-import utility.*;
+//import utility.*;
 import java.util.*;
-class Cluster {
+import java.lang.*;
+class Cluster implements Iterable<Integer>, Comparable <Cluster> {
 
 	private Tuple centroid;
 
@@ -55,6 +56,18 @@ class Cluster {
     public Iterator<Integer> iterator(){
         return clusteredData.iterator();
     }
+    //in prova
+    public int compareTo(Cluster o){
+
+            if(this.getSize()>o.getSize()){
+                return 1;
+            } else if ( this.getSize()<o.getSize()) {
+                return -1;
+            }
+            return this.getCentroid().toString().compareTo(o.getCentroid().toString());
+    }
+
+
 
 	
 	public String toString(){
@@ -74,15 +87,15 @@ class Cluster {
 		for(int i=0;i<centroid.getLenght();i++)
 			str+=centroid.get(i)+ " ";
 		str+=")\nExamples:\n";
-		Set<Integer> = new HashSet<>(clusteredData);
-		for(){
+		Set<Integer> hSet = new HashSet<>(clusteredData);
+		for(Integer hSets : hSet){
 			str+="[";
 			for(int j=0;j<data.getNumberOfAttributes();j++)
-				str+=data.getAttributeValue((int)array[i], j)+" ";
-			str+="] dist="+getCentroid().getDistance(data.getItemSet((int)array[i]))+"\n";
+				str+=data.getAttributeValue(hSets, j) + " ";
+			str+="] dist="+getCentroid().getDistance(data.getItemSet(hSets))+"\n";
 			
 		}
-		str+="\nAvgDistance="+getCentroid().avgDistance(data, array);
+		str+="\nAvgDistance="+getCentroid().avgDistance(data, hSet);
 		return str;
 		
 	}

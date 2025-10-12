@@ -1,6 +1,10 @@
 package mining;
 
 import data.*;
+
+import java.util.Iterator;
+import java.util.*;
+
 public class QTMiner {
 
     ClusterSet C;
@@ -32,9 +36,9 @@ public class QTMiner {
             C.add(c);
             numclusters++;
             //Rimuovo le tuple clusterizzate da dataset
-            int clusteredTupleId[]=c.iterator();
-            for(int i=0; i<clusteredTupleId.length; i++){
-                isClustered[clusteredTupleId[i]]=true;
+            Iterator<Integer> clusteredTupleId =c.iterator();
+            while(clusteredTupleId.hasNext()){
+                isClustered[clusteredTupleId.next()]=true;
             }
             countClustered+=c.getSize();
         }
@@ -44,7 +48,8 @@ public class QTMiner {
     public Cluster buildCandidateCluster(Data data, boolean isClustered[]){
 
 
-        ClusterSet CS = new ClusterSet();
+        //ClusterSet CS = new ClusterSet();
+        Cluster candidate=new Cluster();
         int countClusterset = 0;
         for (int i =0; i<data.getNumberOfExamples(); i++){
             if(isClustered[i]==false){
@@ -57,11 +62,17 @@ public class QTMiner {
                         }
                     }
                 }
-                CS.add(cl);
-                countClusterset = countClusterset + 1;
+                //CS.add(cl);
+                //countClusterset = countClusterset + 1;
+                if(cl.getSize() > countClusterset){
+                    countClusterset = cl.getSize();
+                    candidate=cl;
+                }
+
             }
         }
-
+        return candidate;
+        /*
         double max = 0;
         int pos = 0;
         for(int i=0; i<countClusterset; i++){
@@ -71,19 +82,14 @@ public class QTMiner {
              }
         } return CS.get(pos);
 
+         */
+        /*
+        Cluster max = new Cluster();
+        for(Cluster c: CS){
+             if(max.compareTo(c)>0)
+                 max = c;
+        } return max;*/
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
