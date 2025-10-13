@@ -168,7 +168,7 @@ public class Data{
     public Tuple getItemSet(int index){
         Tuple tuple = new Tuple (attributeSet.size());
         for(int i =0; i < attributeSet.size();i++)
-            tuple.add(i,new DiscreteItem( (DiscreteAttribute) attributeSet.get(i) ,(String) data[index][i]));
+            tuple.add(i, new DiscreteItem( (DiscreteAttribute) attributeSet.get(i) ,(String) data[index][i]));
         return tuple;
     }
 

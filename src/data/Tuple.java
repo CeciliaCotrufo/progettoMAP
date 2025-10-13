@@ -42,10 +42,12 @@ public class Tuple{
         return sum;
     }
 
-    public double avgDistance(Data data, Set clusteredData) {
+    public double avgDistance(Data data, HashSet <Integer> clusteredData) {
         double p = 0.0, sumD = 0.0;
-        for (int i = 0; i<clusteredData.size(); i++) {
-            double d = getDistance(data.getItemSet(clusteredData.size()));
+        Tuple centroid;
+        for (Integer CD : clusteredData) {
+            centroid = data.getItemSet(CD);
+            double d = getDistance(centroid);
             sumD += d;
         }
         p = sumD / clusteredData.size();

@@ -21,7 +21,7 @@ public class MainTest {
                 System.out.println("Insert radius (>0)= ");
                 radius =Keyboard.readDouble() ;
                 qt = new QTMiner(radius);
-            }while(radius<=0);// aggiungere controllo se maggiore di 4
+            }while(radius<=0 || radius>4 );
 
             try{
                 int numIter=qt.compute(data);
