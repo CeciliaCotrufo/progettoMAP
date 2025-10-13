@@ -7,7 +7,7 @@ class Cluster implements Iterable<Integer>, Comparable <Cluster> {
 
 	private Tuple centroid;
 
-	private Set<Integer> clusteredData =  new HashSet<Integer>();
+	private Set<Integer> clusteredData =  new HashSet<>();
 	
 	Cluster(){
 		this.centroid = centroid;
@@ -17,7 +17,7 @@ class Cluster implements Iterable<Integer>, Comparable <Cluster> {
 
 	Cluster(Tuple centroid){
 		this.centroid=centroid;
-		clusteredData=new HashSet<Integer>();
+		clusteredData=new HashSet<>();
 		
 	}
 
@@ -53,7 +53,7 @@ class Cluster implements Iterable<Integer>, Comparable <Cluster> {
 		return clusteredData.toArray();
 	}*/
 
-    public Iterator<Integer> iterator(){
+    public Iterator <Integer> iterator(){
         return clusteredData.iterator();
     }
     //in prova
@@ -73,7 +73,7 @@ class Cluster implements Iterable<Integer>, Comparable <Cluster> {
 	public String toString(){
 		String str="Centroid=(";
 		for(int i=0;i<centroid.getLenght();i++)
-			str+=centroid.get(i);
+			str += centroid.get(i);
 		str+=")";
 		return str;
 		
@@ -95,30 +95,11 @@ class Cluster implements Iterable<Integer>, Comparable <Cluster> {
 			str+="] dist="+getCentroid().getDistance(data.getItemSet(hSets))+"\n";
 			
 		}
-		str+="\nAvgDistance="+getCentroid().avgDistance(data, (HashSet) hSet); //SISTEMARE
+		str+="\nAvgDistance="+getCentroid().avgDistance(data, (HashSet <Integer>) hSet); //SISTEMARE
 		return str;
 		
 	}
 
 
-    /*
-    	public String toString(Data data){
-		String str="Centroid=(";
-		for(int i=0;i<centroid.getLength();i++)
-			str+=centroid.get(i)+ " ";
-		str+=")\nExamples:\n";
-		int array[]=clusteredData.toArray();
-		for(int i=0;i<array.length;i++){
-			str+="[";
-			for(int j=0;j<data.getNumberOfExplanatoryAttributes();j++)
-				str+=data.getValue(array[i], j)+" ";
-			str+="] dist="+getCentroid().getDistance(data.getItemSet(array[i]))+"\n";
-
-		}
-		str+="\nAvgDistance="+getCentroid().avgDistance(data, array);
-		return str;
-
-	}
-     */
 
 }

@@ -14,7 +14,7 @@ public class Data{
     private Object data [][];
     private int numberOfExamples;
     //private Attribute attributeSet;
-    List<Attribute> attributeSet;
+    private List<Attribute> attributeSet;
 
 
     /**

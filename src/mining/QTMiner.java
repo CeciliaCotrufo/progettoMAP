@@ -7,9 +7,9 @@ import java.util.*;
 
 public class QTMiner {
 
-    ClusterSet C;
-    double radius;
-
+    private ClusterSet C;
+    private double radius;
+  
     public QTMiner(double radius){
         this.C =new ClusterSet();
         this.radius = radius;

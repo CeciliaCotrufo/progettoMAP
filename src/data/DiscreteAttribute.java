@@ -6,12 +6,12 @@ import java.util.*;
 /**
  * Classe che estende la classe Attribute e rappresenta un attributo discreto (categorico).
  */
-public class DiscreteAttribute extends Attribute implements Iterable<TreeSet>{
+public class DiscreteAttribute extends Attribute implements Iterable<String>{
 
 
-    private TreeSet<String> values = new TreeSet<>();
+    private TreeSet<String> values;
 
-    public Iterator iterator(){
+    public Iterator<String> iterator(){
         return values.iterator();
     }
 
