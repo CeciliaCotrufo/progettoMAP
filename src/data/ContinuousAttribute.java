@@ -3,25 +3,26 @@ package data;
 /**
  * Classe che estende la classe Attribute e modella un attributo continuo.
  */
-public class ContinousAttribute extends Attribute{
+public class ContinuousAttribute extends Attribute{
+
+
 
     private double max;
     private double min;
 
     /**
-     * Invoca il costruttore della classe madre e inizializza i membri aggiunit per estensione.
-     * @param name
-     * @param index
-     * @param max
-     * @param min
+     * Invoca il costruttore della classe madre e inizializza i membri aggiunti per estensione.
      */
-    ContinousAttribute(String name, int index, double max, double min){
+
+
+    ContinuousAttribute(String name, int index, double min, double max){
 
         super(name, index);
 
         this.max = max;
         this.min = min;
     }
+
 
     /**
      * Metodo che restituisce il massimo valore dell'intervallo.
@@ -40,7 +41,7 @@ public class ContinousAttribute extends Attribute{
      * @param v
      * @return
      */
-    double getScaledValue(double v){
+    /*public double getScaledValue(double v){
         double v1 =0.0;
 
         if(v>=getMin() && v<=getMax()){
@@ -48,6 +49,19 @@ public class ContinousAttribute extends Attribute{
         }
 
         return v1;
+    }*/
+    public double getScaledValue(double v) {
+        double range = getMax() - getMin();
+
+        // Gestione del caso range zero (robustezza)
+        if (v == min) {
+            return 0.0;
+        } else {
+            return (v - min) / range;
+        }
+
+        // Calcolo Min-Max: produce un valore < 0 per v=0.0 o v=0.1
+
     }
 
 

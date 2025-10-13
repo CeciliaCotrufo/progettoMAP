@@ -35,7 +35,7 @@ public class ClusterSet implements Iterable<Cluster>{
 
     public String toString(Data data){
         String str = "";
-        int i = 0;
+        int i = 1;
         for(Cluster c : C) {
             //if(null != C.iterator()){
                 str+= i + " : " + c.toString(data) +"\n";//abbiamo tolto la i...

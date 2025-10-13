@@ -9,7 +9,7 @@ public class QTMiner {
 
     private ClusterSet C;
     private double radius;
-  
+
     public QTMiner(double radius){
         this.C =new ClusterSet();
         this.radius = radius;
@@ -22,8 +22,8 @@ public class QTMiner {
     public int compute(Data data) throws ClusteringRadiusException{
 
         int numclusters=0;
-        boolean isClustered[]=new boolean[data.getNumberOfExamples()];
-        for(int i=0; i<isClustered.length; i++)
+        boolean[] isClustered =new boolean[data.getNumberOfExamples()];
+        for(int i = 0; i<isClustered.length; i++)
             isClustered[i]=false;
         int countClustered=0;
         while(countClustered!=data.getNumberOfExamples())
@@ -45,17 +45,17 @@ public class QTMiner {
         return numclusters;
     }
 
-    public Cluster buildCandidateCluster(Data data, boolean isClustered[]){
+    public Cluster buildCandidateCluster(Data data, boolean[] isClustered){
 
 
         //ClusterSet CS = new ClusterSet();
         Cluster candidate=new Cluster();
         int countClusterset = 0;
         for (int i =0; i<data.getNumberOfExamples(); i++){
-            if(isClustered[i]==false){
+            if(!isClustered[i]){
                 Cluster cl = new Cluster(data.getItemSet(i));
                 for(int j=0; j<data.getNumberOfExamples(); j++) {
-                    if(isClustered[j] == false) {
+                    if(!isClustered[j]) {
                         double d=data.getItemSet(i).getDistance(data.getItemSet(j));
                         if(d <= radius){
                             cl.addData(j);
