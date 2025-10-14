@@ -1,9 +1,11 @@
 package data;
 
+import java.io.Serializable;
+
 /**
  * Modella l'entità dell'attributo.
  */
-abstract class Attribute {
+abstract class Attribute implements Serializable {
 
     private String name; //nome simbolico dell'attributo
     private int index; //identificativo numerico dell'attributo

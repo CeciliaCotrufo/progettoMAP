@@ -2,10 +2,11 @@ package mining;
 
 import data.*;
 
+import java.io.*;
 import java.util.Iterator;
 import java.util.*;
 
-public class QTMiner {
+public class QTMiner implements Serializable {
 
     private ClusterSet C;
     private double radius;
@@ -14,6 +15,28 @@ public class QTMiner {
         this.C =new ClusterSet();
         this.radius = radius;
     }
+    /*
+    * Scritto come carica, ricontrollare
+    * */
+    public QTMiner (String fileName) throws FileNotFoundException, IOException, ClassNotFoundException {
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))){
+            this.C = (ClusterSet) ois.readObject();
+        }catch(IOException|ClassNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+
+
+    public void salva(String fileName) throws FileNotFoundException, IOException{
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))){
+            oos.writeObject(this.C);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+
+
 
     public ClusterSet getC() {
         return C;

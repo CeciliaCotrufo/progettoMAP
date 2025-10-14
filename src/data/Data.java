@@ -18,7 +18,7 @@ public class Data {
 
 
     /**
-     *
+     * Metodo che inizializza la matrice data[][] con trasnsazioni di esempio
      */
     public Data() throws EmptyDatasetException{
 
@@ -171,11 +171,14 @@ public class Data {
             if (attributeSet.get(i) instanceof DiscreteAttribute) {
                 tuple.add(i, new DiscreteItem((DiscreteAttribute) attributeSet.get(i), (String) data[index][i]));
             } else if (attributeSet.get(i) instanceof ContinuousAttribute) {
-                tuple.add(i, new ContinuousItem((ContinuousAttribute) attributeSet.get(i), Double.valueOf((String)data[index][i])) );
+                String value = String.valueOf(data[index][i]);
+                tuple.add(i, new ContinuousItem((ContinuousAttribute) attributeSet.get(i), Double.valueOf(value)) );
             }
         }
         return tuple;
     }
+
+
 
 
     public String toString(){

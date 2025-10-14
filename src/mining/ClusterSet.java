@@ -1,8 +1,10 @@
 package mining;
 import data.*;
+
+import java.io.Serializable;
 import java.util.*;
 import java.lang.Iterable;
-public class ClusterSet implements Iterable<Cluster>{
+public class ClusterSet implements Iterable<Cluster>, Serializable {
 
     private Set<Cluster> C;
 
@@ -28,7 +30,7 @@ public class ClusterSet implements Iterable<Cluster>{
     public String toString(){
         String str = "";
         for(Cluster c : C) {
-            str += c; //si può usare anche c. onesto iterator() è ancora un mistero per me
+            str += c + "\n"; //si può usare anche c. onesto iterator() è ancora un mistero per me
         }
         return str;
     }

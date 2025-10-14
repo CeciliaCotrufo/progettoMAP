@@ -36,11 +36,7 @@ public class ContinuousAttribute extends Attribute{
      */
     public double getMin(){return min;}
 
-    /**
-     * Calcola e restituisce il valore scalato del parametro passato in input.
-     * @param v
-     * @return
-     */
+
     /*public double getScaledValue(double v){
         double v1 =0.0;
 
@@ -50,6 +46,13 @@ public class ContinuousAttribute extends Attribute{
 
         return v1;
     }*/
+
+    //CHE SCHIFO
+    /**
+     * Calcola e restituisce il valore scalato del parametro passato in input.
+     * @param v
+     * @return
+     */
     public double getScaledValue(double v) {
         double range = getMax() - getMin();
 

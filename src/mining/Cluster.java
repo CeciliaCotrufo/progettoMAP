@@ -1,9 +1,10 @@
 package mining;
 import data.*;
 //import utility.*;
+import java.io.Serializable;
 import java.util.*;
 import java.lang.*;
-class Cluster implements Iterable<Integer>, Comparable <Cluster> {
+class Cluster implements Iterable<Integer>, Comparable <Cluster>, Serializable {
 
 	private Tuple centroid;
 
@@ -95,7 +96,7 @@ class Cluster implements Iterable<Integer>, Comparable <Cluster> {
 			str+="] dist="+getCentroid().getDistance(data.getItemSet(hSets))+"\n";
 			
 		}
-		str+="\nAvgDistance="+getCentroid().avgDistance(data, (HashSet <Integer>) hSet); //SISTEMARE
+		str+="\nAvgDistance="+getCentroid().avgDistance(data, (HashSet <Integer>) hSet);
 		return str;
 		
 	}

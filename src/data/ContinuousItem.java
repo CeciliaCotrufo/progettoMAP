@@ -3,6 +3,12 @@ package data;
 import java.lang.Math;
 public class ContinuousItem extends Item{
 
+    /**
+     *
+     * @param attribute
+     * @param value
+     */
+
     ContinuousItem(Attribute attribute, Double value){
         super(attribute, value);
     }
@@ -17,11 +23,8 @@ public class ContinuousItem extends Item{
         double sv = attributeItem.getScaledValue((double) item.getValue());
         ContinuousAttribute attributeThis = (ContinuousAttribute) this.getAttribute();
         double dv = attributeThis.getScaledValue((double) this.getValue());
-        if(dv == sv){
-            return 0;
-        }else{
-            return Math.abs(dv - sv);
-        }
+        return Math.abs(dv - sv);
+
     }
 
     /*
