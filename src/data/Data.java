@@ -2,6 +2,8 @@ package data;
 import java.util.*;
 import java.util.TreeSet;
 import java.util.List;
+import database.*;
+
 import java.io.IOException;
 /*import java.util.Arrays;
 import java.util.LinkedList;*/
@@ -11,21 +13,26 @@ import java.util.LinkedList;*/
  */
 public class Data {
 
-    private Object[][] data;
+    private List <Example> data;
     private int numberOfExamples;
     //private Attribute attributeSet;
-    private List<Attribute> attributeSet;
+    private List <Attribute> attributeSet;
 
 
     /**
      * Metodo che inizializza la matrice data[][] con trasnsazioni di esempio
      */
-    public Data() throws EmptyDatasetException{
+    public Data(String table) throws EmptyDatasetException{
 
         //data
 
-        data = new Object [14][5];
+        data = new ArrayList<Example>();
 
+
+
+
+
+        /*
         data[0][0] = "Sunny";
         data[0][1] = 30.3;
         data[0][2] = "High";
@@ -96,7 +103,7 @@ public class Data {
         data[13][2] = "High";
         data[13][3] = "Strong";
         data[13][4] = "No";
-
+        */
 
 
         // numberOfExamples

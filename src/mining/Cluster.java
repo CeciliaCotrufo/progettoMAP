@@ -15,7 +15,6 @@ class Cluster implements Iterable<Integer>, Comparable <Cluster>, Serializable {
         this.clusteredData = clusteredData;
 	}
 
-
 	Cluster(Tuple centroid){
 		this.centroid=centroid;
 		clusteredData=new HashSet<>();
