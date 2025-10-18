@@ -6,11 +6,13 @@ import java.util.List;
 
 
 public class Example implements Comparable<Example>{
+
 	private List<Object> example=new ArrayList<Object>();
 
 	public void add(Object o){
 		example.add(o);
 	}
+
 	
 	public Object get(int i){
 		return example.get(i);

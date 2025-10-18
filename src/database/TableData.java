@@ -94,7 +94,7 @@ public class TableData {
 		TableSchema tSchema=new TableSchema(db,table);
 		
 		
-		String query="select distinct ";
+		String query=" select distinct ";
 		
 		query+= column.getColumnName();
 		

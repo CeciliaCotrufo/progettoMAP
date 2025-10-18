@@ -1,5 +1,5 @@
 package data;
-
+import database.*;
 import java.lang.Math;
 public class ContinuousItem extends Item{
 

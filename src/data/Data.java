@@ -1,4 +1,5 @@
 package data;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.TreeSet;
 import java.util.List;
@@ -13,24 +14,29 @@ import java.util.LinkedList;*/
  */
 public class Data {
 
-    private List <Example> data;
+    private List<Example> data;
     private int numberOfExamples;
     //private Attribute attributeSet;
-    private List <Attribute> attributeSet;
+    private List<Attribute> attributeSet;
 
 
     /**
      * Metodo che inizializza la matrice data[][] con trasnsazioni di esempio
      */
-    public Data(String table) throws EmptyDatasetException{
+    public Data(String table) throws EmptyDatasetException {
 
         //data
 
         data = new ArrayList<Example>();
 
-
-
-
+        try {
+            DbAccess db = new DbAccess();
+            db.initConnection();
+            TableData td = new TableData(db);
+            data = td.getDistinctTransazioni(table);
+        } catch (DatabaseConnectionException | SQLException | EmptySetException e) {
+            System.out.println(e.getMessage());
+        }
 
         /*
         data[0][0] = "Sunny";
@@ -108,7 +114,7 @@ public class Data {
 
         // numberOfExamples
 
-        numberOfExamples=14;
+        numberOfExamples = 14;
 
 
         //explanatory Set
@@ -133,35 +139,33 @@ public class Data {
         TreeSet<String> humidityValues = new TreeSet<>();
         humidityValues.add("high");
         humidityValues.add("normal");
-        attributeSet.add(new DiscreteAttribute("Humidity",2, humidityValues));
+        attributeSet.add(new DiscreteAttribute("Humidity", 2, humidityValues));
 
-        TreeSet<String> windValues=new TreeSet<>();
+        TreeSet<String> windValues = new TreeSet<>();
         windValues.add("weak");
         windValues.add("strong");
-        attributeSet.add(3, new DiscreteAttribute("Wind",3, windValues));
+        attributeSet.add(3, new DiscreteAttribute("Wind", 3, windValues));
 
         TreeSet<String> playTennisValues = new TreeSet<>();
         playTennisValues.add("no");
         playTennisValues.add("yes");
-        attributeSet.add(4, new DiscreteAttribute("PlayTennis",4, playTennisValues));
+        attributeSet.add(4, new DiscreteAttribute("PlayTennis", 4, playTennisValues));
         // similmente per gli altri attributi
 
 
     }
 
-    public int getNumberOfExamples(){
+    public int getNumberOfExamples() {
         return numberOfExamples;
     }
 
-    public int getNumberOfAttributes(){
+    public int getNumberOfAttributes() {
         return attributeSet.size();
     }
 
 
-
-    public Object getAttributeValue(int exampleIndex, int attributeIndex){
-        return data[exampleIndex][attributeIndex];
-
+    public Object getAttributeValue(int attributeIndex) {
+        return data.get(attributeIndex);
     }
 
     /*Attribute getAttribute(int index){
@@ -172,23 +176,21 @@ public class Data {
         return attributeSet;
     }*/
 
-    public Tuple getItemSet(int index){
-        Tuple tuple = new Tuple (attributeSet.size());
-        for(int i =0; i < attributeSet.size();i++) {
+    public Tuple getItemSet(int index) {
+        Tuple tuple = new Tuple(attributeSet.size());
+        for (int i = 0; i < attributeSet.size(); i++) {
             if (attributeSet.get(i) instanceof DiscreteAttribute) {
-                tuple.add(i, new DiscreteItem((DiscreteAttribute) attributeSet.get(i), (String) data[index][i]));
+                tuple.add(i, new DiscreteItem((DiscreteAttribute) attributeSet.get(i), (String) data.get(index).get(i)));
             } else if (attributeSet.get(i) instanceof ContinuousAttribute) {
-                String value = String.valueOf(data[index][i]);
-                tuple.add(i, new ContinuousItem((ContinuousAttribute) attributeSet.get(i), Double.valueOf(value)) );
+                //String value = String.valueOf(data.get(i));
+                tuple.add(i, new ContinuousItem((ContinuousAttribute) attributeSet.get(i), (Double) data.get(index).get(i)));
             }
         }
         return tuple;
     }
 
 
-
-
-    public String toString(){
+    public String toString() {
 
         /*String [] attribute;
         attribute = new String[getNumberOfAttributes()];*/
@@ -196,18 +198,24 @@ public class Data {
             System.out.print(getAttribute(i)+",");
         }
         System.out.println();*/
-
-        for(int i=0;i<getNumberOfExamples();i++){
-            System.out.print(i+1+":");
-            for(int j=0;j<getNumberOfAttributes();j++){
-                data[i][j]= getAttributeValue(i,j).toString();
-                System.out.print(data[i][j] + ",");
-            }
-            System.out.println();
+        //int i = 0;
+        String str="";
+        for (Example example : data) {
+            /*System.out.print(data.lastIndexOf(example));
+            String string = data.set(i, example).toString();
+            data[i][j]= getAttributeValue(i,j).toString();
+            System.out.println(i+1 + ": " + string);
+            i++;*/
+            str+= example + "\n";
+            //System.out.println(str);
         }
+        //System.out.println();
 
-        return "";
+        //https://www.youtube.com/watch?v=SufH1q1PnAw
+        //https://www.youtube.com/watch?v=Kzs4dbPMHDs
+        //No
 
+        return str;
     }
 
 
@@ -215,7 +223,7 @@ public class Data {
         Data trainingSet = null;
 
         try {
-            trainingSet = new Data();
+            trainingSet = new Data("playtennis");
         }catch(EmptyDatasetException e) {
             System.out.println(e.getMessage());
 

@@ -1,4 +1,5 @@
 package data;
+import database.*;
 public class DiscreteItem extends Item{
 
     DiscreteItem(DiscreteAttribute attribute, String value){

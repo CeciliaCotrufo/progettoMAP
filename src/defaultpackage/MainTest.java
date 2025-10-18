@@ -15,7 +15,7 @@ public class MainTest {
         do {
             //int numIter=0;
             double radius = 0.0;
-            Data data = new Data();
+            Data data = new Data("playtennis");
             QTMiner qt = null;
             int choice = 0;
             System.out.println("Scegli una opzione \n (1) Carica Cluster da File \n (2) Carica dati \n Risposta: ");

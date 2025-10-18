@@ -90,8 +90,8 @@ class Cluster implements Iterable<Integer>, Comparable <Cluster>, Serializable {
 		Set<Integer> hSet = clusteredData;
 		for(Integer hSets : hSet){
 			str+="[";
-			for(int j=0;j<data.getNumberOfAttributes();j++)
-				str+=data.getAttributeValue(hSets, j) + " ";
+			//for(int j=0;j<data.getNumberOfAttributes();j++)
+				str+=data.getAttributeValue(hSets) + " ";
 			str+="] dist="+getCentroid().getDistance(data.getItemSet(hSets))+"\n";
 			
 		}

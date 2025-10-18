@@ -10,15 +10,14 @@ public class DbAccess {
     private final String DBMS="jdbc:mysql";
     private final String SERVER="localhost";
     private final String DATABASE="MapDB";
-    private final String PORT= String.valueOf(3306);
+    private final String PORT= "3306";
     private final String USER_ID = "MapUser";
     private final String PASSWORD = "map";
     private Connection conn;
 
-
+//controllare
     public void initConnection() throws DatabaseConnectionException{
         //this.conn = DriverManager.getConnection(DRIVER_CLASS_NAME);
-
         try {
             Class.forName(DRIVER_CLASS_NAME).newInstance();
         } catch(ClassNotFoundException e) {
@@ -31,6 +30,7 @@ public class DbAccess {
             System.out.println("[!] Cannot access the driver : " + e.getMessage());
             throw new DatabaseConnectionException("");
         }
+
         String connectionString = DBMS + "://" + SERVER + ":" + PORT + "/" + DATABASE
                 + "?user=" + USER_ID + "&password=" + PASSWORD + "&serverTimezone=UTC";
 

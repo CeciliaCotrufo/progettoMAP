@@ -1,9 +1,10 @@
 DROP DATABASE IF EXISTS MapDB;
-CREATE DATABASE IF NOT EXISTS MapDb;
+CREATE DATABASE IF NOT EXISTS MapDB;
 USE MapDB;
 
-CREATE USER 'MapUser'@'localhost'IDENTIFIED BY 'map';
-GRANT CREATE, SELECT, INSERT, DELETE ON MapDB.* TO MapUser@localhost IDENTIFIED BY 'map';
+
+CREATE USER 'MapUser'@'localhost' IDENTIFIED BY 'map';
+GRANT CREATE, SELECT, INSERT, DELETE ON MapDB.* TO 'MapUser'@'localhost' IDENTIFIED BY 'map';
 CREATE TABLE MapDB.playtennis(
 	outlook varchar(10),
 	temperature float(5,2),--controllare se lasciare float o double
@@ -11,6 +12,8 @@ CREATE TABLE MapDB.playtennis(
 	wind varchar(10),
 	play varchar(10)
 );
+
+
 
 insert into MapDB.playtennis values('sunny',30.3,'high','weak','no');
 insert into MapDB.playtennis values('sunny',30.3,'high','strong','no');
