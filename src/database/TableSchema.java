@@ -17,7 +17,7 @@ public class TableSchema {
 	public class Column{
 		private String name;
 		private String type;
-		Column(String name,String type){
+		public Column(String name,String type){
 			this.name=name;
 			this.type=type;
 		}
@@ -31,7 +31,7 @@ public class TableSchema {
 			return name+":"+type;
 		}
 	}
-	List<Column> tableSchema=new ArrayList<Column>();
+	public List<Column> tableSchema=new ArrayList<Column>();
 	
 	public TableSchema(DbAccess db, String tableName) throws SQLException{
 		this.db=db;

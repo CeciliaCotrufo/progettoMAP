@@ -1,5 +1,7 @@
 package data;
 
+import database.QUERY_TYPE;
+
 /**
  * Classe che estende la classe Attribute e modella un attributo continuo.
  */

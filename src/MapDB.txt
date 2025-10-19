@@ -7,7 +7,7 @@ CREATE USER 'MapUser'@'localhost' IDENTIFIED BY 'map';
 GRANT CREATE, SELECT, INSERT, DELETE ON MapDB.* TO 'MapUser'@'localhost' IDENTIFIED BY 'map';
 CREATE TABLE MapDB.playtennis(
 	outlook varchar(10),
-	temperature float(5,2),--controllare se lasciare float o double
+	temperature double(5,2),--controllare se lasciare float o double
 	umidity varchar(10),
 	wind varchar(10),
 	play varchar(10)

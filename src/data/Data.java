@@ -28,13 +28,36 @@ public class Data {
         //data
 
         data = new ArrayList<Example>();
+        attributeSet = new LinkedList<>();
 
         try {
             DbAccess db = new DbAccess();
             db.initConnection();
             TableData td = new TableData(db);
             data = td.getDistinctTransazioni(table);
-        } catch (DatabaseConnectionException | SQLException | EmptySetException e) {
+            TableSchema ts = new TableSchema(db,table);
+            List<TableSchema.Column> schema = ts.tableSchema;
+            for(int i =0; i<schema.size(); i++){
+                if(schema.get(i).isNumber()){
+                    Object minVal = td.getAggregateColumnValue(table, schema.get(i), QUERY_TYPE.MIN );
+                    Object maxVal = td.getAggregateColumnValue(table, schema.get(i), QUERY_TYPE.MAX );
+                    double min =((Number)minVal).doubleValue();
+                    double max =((Number)maxVal).doubleValue();
+                    attributeSet.add(new ContinuousAttribute(schema.get(i).getColumnName(), i, min, max));
+                }else {
+                    //cambiare nomi
+                    Set<Object> distinctValues = td.getDistinctColumnValues(table, schema.get(i));
+                    TreeSet<String> discreteValues = new TreeSet<>();
+                    for(Object val : distinctValues){
+                        discreteValues.add(val.toString());
+                    }
+
+                    attributeSet.add(new DiscreteAttribute(schema.get(i).getColumnName(), i, discreteValues));
+                }
+
+            }
+            db.closeConnection();
+        } catch (DatabaseConnectionException | SQLException | EmptySetException | NoValueException e) {
             System.out.println(e.getMessage());
         }
 
@@ -119,11 +142,11 @@ public class Data {
 
         //explanatory Set
 
-        attributeSet = new LinkedList<>();
+
 
         // TO DO : avvalorare ciascune elemento di attributeSet con un oggetto della classe DiscreteAttribute che modella il corrispondente attributo (e.g. outlook, temperature,etc)
         // nel seguito si fornisce l'esempio per outlook
-
+        /*
         TreeSet<String> outLookValues = new TreeSet<>();
         outLookValues.add("overcast");
         outLookValues.add("rain");
@@ -133,7 +156,7 @@ public class Data {
         //TreeSet<String> temperatureValues = new TreeSet<>();
         /*temperatureValues.add("hot");
         temperatureValues.add("mild");
-        temperatureValues.add("cool");*/
+        temperatureValues.add("cool");
         attributeSet.add(new ContinuousAttribute("Temperature", 1, 3.2, 38.7));
 
         TreeSet<String> humidityValues = new TreeSet<>();
@@ -151,6 +174,32 @@ public class Data {
         playTennisValues.add("yes");
         attributeSet.add(4, new DiscreteAttribute("PlayTennis", 4, playTennisValues));
         // similmente per gli altri attributi
+
+        try{
+            DbAccess db = new DbAccess();
+            db.initConnection();
+            TableData td = new TableData(db);
+            TableSchema ts = new TableSchema(db,table);
+            List<TableSchema.Column> schema = ts.tableSchema;
+            TableSchema.Column outLookValues = ts.new Column("outLookValues", "VARCHAR");
+            TableSchema.Column temperatureValues = ts.new Column("temperatureValues", "DOUBLE");
+            TableSchema.Column humidityValues = ts.new Column("humidityValues", "VARCHAR");
+            TableSchema.Column windValues = ts.new Column("windValues", "VARCHAR");
+            TableSchema.Column playTennisValues = ts.new Column("playTennis", "VARCHAR");
+            attributeSet.add((Attribute) td.getDistinctColumnValues("playtennis", outLookValues));
+            attributeSet.add((Attribute) td.getAggregateColumnValue("playtennis", temperatureValues, QUERY_TYPE));
+            attributeSet.add((Attribute) td.getDistinctColumnValues("playtennis", humidityValues));
+            attributeSet.add((Attribute) td.getDistinctColumnValues("playtennis", windValues));
+            attributeSet.add((Attribute)td.getDistinctColumnValues("playtennis",  playTennisValues));
+        }catch(DatabaseConnectionException | SQLException e) {
+            System.out.println(e.getMessage());
+        }*/
+
+        /*
+        ho una classe dentro un'altra classe, chiamiamole classe1 e classe 2. classe 2, che si trova all'interno
+        di classe1, ha il costruttore dentro classe 2. come chiamo il costruttore di classe 2 in un'altra classe,
+        chiamata classe 3 che si trova da un'altra parte?
+        */
 
 
     }

@@ -52,7 +52,10 @@ public class DbAccess {
 
     public Connection getConnection() { return conn;}
 
-    public void closeConnection() throws SQLException {conn.close();}
+    public void closeConnection() throws SQLException {
+
+        System.out.println("CHIUSO!!!!");
+        conn.close();}
 
 
 
