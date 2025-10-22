@@ -45,7 +45,7 @@ public class Data {
                     double max =((Number)maxVal).doubleValue();
                     attributeSet.add(new ContinuousAttribute(schema.get(i).getColumnName(), i, min, max));
                 }else {
-                    //cambiare nomi
+                    //cambiare nomi NO
                     Set<Object> distinctValues = td.getDistinctColumnValues(table, schema.get(i));
                     TreeSet<String> discreteValues = new TreeSet<>();
                     for(Object val : distinctValues){

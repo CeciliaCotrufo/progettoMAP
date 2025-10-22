@@ -11,7 +11,7 @@ public class MainTest {
     /**
      * @param args
      */
-    public static void main(String[] args) throws EmptyDatasetException {
+    public static void main(String[] args) throws EmptyDatasetException, IOException {
         do {
             //int numIter=0;
             double radius = 0.0;
@@ -23,15 +23,15 @@ public class MainTest {
 
 
             if (choice == 1) {
-                System.out.println("Nome archivio:radius ");
-                radius = Keyboard.readDouble();
-                qt = new QTMiner(radius);
-                try {
-                    qt.compute(data);
+                //System.out.println("Nome archivio:radius ");
+                //radius = Keyboard.readDouble();
+                //qt = new QTMiner(radius);
+                /*try {
+                    //qt.compute(data);
                     qt.salva("/home/paprika/dataSet.txt");
-                } catch (ClusteringRadiusException | IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
-                }
+                }*/
                 try {
                     QTMiner qtminer = new QTMiner("/home/paprika/dataSet.txt");
                     if (qtminer != null) {
@@ -60,9 +60,13 @@ public class MainTest {
 
 
                     System.out.println(qt.getC().toString(data));
-                    System.out.println("Backup file name:radius" +(int) radius+ "\nSaving clusters in radius"+
-                            (int) radius+".dmp\nSaving transaction ended!");
+                    qt.salva("/home/paprika/dataSet.txt");
+                    System.out.print("Backup file name:");
+                    String file = Keyboard.readString();
+                    System.out.print("\nSaving clusters in "+ file +
+                             ".dmp\nSaving transaction ended!\n");
                     System.out.println("New execution?(y/n)");
+                    qt.salva(file);
                 } while (Keyboard.readChar() == 'y');
 
 
